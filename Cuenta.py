@@ -15,10 +15,13 @@ generar_interés(self): aumenta el balance de la cuenta por el balance actual * 
 """
 
 class CuentaBancaria:
-# ¡No olvides agregar algunos valores predeterminados para estos parámetros!
+
+    cuentas = []
+
     def __init__(self, tasa_interes, balance=0): 
         self.balance = balance
-        self.tasa_interes = tasa_interes   
+        self.tasa_interes = tasa_interes
+        CuentaBancaria.cuentas.append(self)   
 
     def deposito(self, amount):
         self.balance += amount 
@@ -49,7 +52,8 @@ class CuentaBancaria:
         else: return False
     
     @classmethod
-    def muestraInstancias(cls, cuenta):
-        cls.mostrar_info_cuenta(cuenta)
-        #print("Balance:",cuenta.balance, "- Tasa de interés:", cuenta.tasa_interes)
+    def muestraInstancias(cls):
+        for i in CuentaBancaria.cuentas:
+            cls.mostrar_info_cuenta(i)
+       
 
